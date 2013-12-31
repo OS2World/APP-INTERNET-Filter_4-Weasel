@@ -1,0 +1,30 @@
+[$sys]
+ Adminkonop=Admin@irgendetwas
+ domains=4
+ some internal stuff
+[/sys]
+
+
+[OS2Force.ch]
+
+ [daniela@os2force.ch NO]
+    + sender1@xy.xx
+    + professor@university.com
+    * Some.other.user@no.idea.com
+ [/daniela]
+
+ [doris@os2force.ch ALL]
+    - ruth@xy.xx
+    - sender1@xy.xx
+    + New_boyfriend@zz.xx
+    - Ex_lover@another.domain.com
+    - staker@somewere.com
+ [/doris]
+
+ [Pablo@os2force.ch]
+    -Ex-Girlfriend@zz.xx
+    *peter@urugu.oo
+    *sender1@xy.xx
+ [/Pablo]
+
+[/Os2force.ch]

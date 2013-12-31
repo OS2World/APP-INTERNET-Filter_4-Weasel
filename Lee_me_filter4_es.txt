@@ -1,0 +1,541 @@
+A primero: porfavor disculpame por mi Espa¤ol malo.
+Filter_4.exe 0.42 es una Filtersoftware, que es escribiendo para el Weasel Mailserver.
+
+mejoramientos:
+- mejorado midir del runtime. Ahora es en milisecundos.
+
+
+
+
+Filter_4 trabaja en paso 4 cuando weasel ha recibido mail nuevo.
+Filter_4 es un Badwordfilter (filtro que busca para palabras malas)
+
+
+Features
+========
+
+-Filtra a leteras sequenciales
+-Filtra a una analog¡a no obstante si esta en leteras grandes o leteras peque¤as
+-Filtra a una palabra que empieza con ....
+-Filtra a una palbra eterna
+-Filtra a una palabra  que empiza con leteras grandes
+-Filtra a una palabra que esta escribido en leteras grandes
+-Filtra a una analog¡a en leteras grandes
+-Filtra a un direcci¢n de correo electronico, empiezando del Topleveldomain
+-Filtra a un Weblink empiezando del Topleveldomain
+-Filtra a un IP-Link directo
+
+
+No soporta:
+===========
+Doppelbyte charakter
+UTF-8
+Mails cifrados
+Mails zip
+
+
+ficheros
+========
+El fichero "filter4.ini" es un fichero texto puro y escribir  cuando Filter_4.exe no el encuentra.
+El fichero "adress": Escribe en ello todos los direcciones de correo electronicos que quieres filtrar. Escribe valores negativos para amigos y positivos valores para Spammers sabidos.
+El fichero "subject": Escribe en ello todas las palabras malas que No beden estar en la linea "Subject"
+El fichero "body": Escribe en ello todas las palabras malas que no deben estar en el body.
+
+
+
+
+El fichero INI:
+===============
+
+El programa utiliza un fichero texto para archivar sus valores.
+el fichero ini tiene que ser en el directorio del filter4.exe o en el directorio del Weasel. Si no es encontrado ilter4.exe escribe un fichero nuevo con valores definidos.
+
+
+whitelist=0
+------------
+reservado para usarios futuros
+
+
+blacklist=0
+-----------
+reservado para usarios futuros
+
+
+blacklist_temp=0
+----------------
+reservado para usarios futuros
+
+
+returnpath=0
+------------
+reservado para usarios futuros
+
+
+recieved=0
+----------
+reservado para usarios futuros
+
+
+From_name=0
+-----------
+Si quiera filtrar par el nombre real, pone el valor a 1.
+Hace sentido que s¢lo escriba nombres que son de spammers como Viagra, Porno..... Para amigos es mejor usar el fichero adess. Porque mailadresses son claraos.
+
+
+From_address=1
+---------------
+Filtra para direciones de correo electronico que son en el fichero "adress".
+Haz un valor negativo para amigas y personas de negocios. As¡ amigos pueden utilizar palabras "malas" aunque el mail ser¡a "Spam".
+Cuando pones el valor a 0 el programa no busca para direcciones de correo electronoco.
+
+
+to_name=0
+---------
+reservado para usarios futuros
+
+
+reply_to=0
+----------
+reservado para usarios futuros
+
+
+to_adress=0
+-----------
+reservado para usarios futuros
+
+
+priority=0
+----------
+reservado para usarios futuros
+
+
+content_type=0
+--------------
+reservado para usarios futuros
+
+
+content_transfer_encoding=1
+---------------------------
+Activa el decoding de base64. Para inactivarlo pone el valor a 0
+
+
+message_id=0
+------------
+reservado para usarios futuros
+
+
+mime_version=0
+--------------
+reservado para usarios futuros
+
+
+Subject=1
+---------
+Filtra malas palabras en la linea subject que son en el fichero "subject"
+
+
+Body_Scan=1
+-----------
+Filtra malas palabras en el body que son en fichero "body"
+
+
+Body_Scan_Size=4
+----------------
+Porque la mayor¡a de los Spams son conocido en las primeros kilobytes no hace mucho sentido para buscar el resto.
+Filtrar la toda mail puede durar horas cuando un mail tiene 40MB o m s.
+Cuando pones el valor en 0 todo el mail filtrar .
+El numero es la cantidad en kb para filtrar.
+Un numero bueno esta de 4 a 8. Pero depende de tus preferencias.
+
+
+Body_Scan_Multipart=1
+---------------------
+Unas Spams dicen que sean Multipartmessages, pero no son.
+Programmas de correo electronicos no hacen estos errores.
+
+
+Mailbombing=0
+-------------
+Unos Spamers usan un Mailserver cofigurado falsa. Mandan sin parrar el mismo Spam.
+Puede ser que son idiotas o con el destino de el servidor no puede servir.
+Por eso planeo para escribir un tracking. En el Step 0 del Weasel se podr¡a descubrir el spamer y rechasa la connecion. Hasta ahora solo es una idea.
+
+
+Bombing_Amount=5
+----------------
+El numero de los spams.
+Pone el valor a tus preferencias.
+Hasta ahora este parte no trabaja.
+
+
+Bombing_time=15
+---------------
+Tiempo de vigilar en que nesecita una cantidad specifica para rechazar conneciones de este servidor.
+Pone el valor a tus preferencias.
+Hasta ahora este parte no trabaja.
+
+
+Bann_Time=24
+------------
+Cuando un servidor esta rechazado por demasiado Spams este valor es el tiempo en horas.
+Es el valor 0 el servidor esta confinado para siempre, que no recomendo.
+Pone el valor a tus preferencias.
+Hasta ahora este parte no trabaja.
+
+
+Trigger_Value=99
+----------------
+Cada palabra mala tiene un valor. Estos valores estan sumando. Cuando el valor total esta m s que el Trigger_Value el mail es daclarada como spam.
+Pone el valor a tus preferencias.
+
+
+Empty_Subject=20
+----------------
+Cuando el correo no tiene subject el valor sube 20.
+Pone el valor a tus preferencias.
+Unos de los spamers no escriben algo en el subject porque quieren exquivar filtros de spam.
+Pero tambien puede ser que es amigo tuyo que no sabe porque le usar¡a el subject o simplemente ha olvidado escribir algo.
+Por eso sea un poco precavido.
+
+
+Empty_body=50
+-------------
+cuando el correo no tiene texto. unos spamers tienen la idea solo mandarte corrreo vacio para ver si tu direcci¢n existe o no. Otros envian cuadros y no textos.
+Pone el valor a tus preferencias.
+
+
+Minimum_body_size=50
+--------------------
+Un correo electronico tiene normalemente un tama¤o minimo. Unos spamers mandan solo un Link o una direcci¢n.
+No nesecita mucho espacio, pero es fastidioso. Normalemente amigos escriben unos palabras tambien cuando quieren mandarte un fichero.
+El valor 50 es el tama¤o que el correo tiene que ser. Cuando es menos le trata como correo vacio y el valor sube con el valor de "Empty_body"
+
+
+Substitud=0
+-----------
+Es una idea futura. Deber¡a buscar para palabras que tienen numeros como leteras: w4tch en lugar de watch
+
+
+Stop=1
+-------
+Dice el programa que le acaba de buscar para palabras malas cuando el valor total esta m s que el Trigger_Value.
+No hace mucho sentido seguir buscar cuando ya sabemos que se trata de spam.
+Cuando stop esta 0 filter_4 sigue buscar hasta el fin del correo o hast llega al valor del Scan_deep_size.
+
+
+Log=1
+------
+Hace un poco logging. Al menos para empezar hace sentido.
+cuando pones el valor a 0 el programa no hace logging.
+
+
+IP_link=100
+-----------
+Suma el valor cuando ha encontrado un Link que es solo de numeros IP. Por ejemplo http://1.1.1.1 o http://127.0.0.1 o cada otro numero IP
+Pone el valor a tus preferencias.
+
+
+Log_directory=
+--------------
+Cuando quieres tener los ficheros en otro directorio. Escriba el directorio sin el nombre del fichero logging
+
+
+Log_errors =1
+-------------
+Filter_4 escribe errores en un fichero separado. Ser¡a interesante cuando tienes problemas.
+Pone el valor a 0 para apagar el logging de errores.
+Si tiene errores en un de los ficheros "adress, subject o body" filter_4 hace una mensage errores en el fichero
+"filter_4_error.log" tambien cuando Log_errors esta 0.
+
+
+copy_message=0
+--------------
+Filter_4 hace si quieres una copia del fichero namefile y messagefile que recibe de weasel.
+Sobreescribe cada vez los ficheros viejos.
+Solo hace sentido cuando tienes problemas.
+
+
+debug=0
+-------
+Filter_3 hace una copia de los ficheros namefile y messagefile y denombra namefile1 y messagefile1.
+Cuando filter_4 termina cancela los ficheros, pero no le hace cuando se colga.
+La proxima vez cuando filter_4 arranca no colga los ficheros. Tienes que hacer de mano.
+Solo hace sentido cuando estas de debuggen y quieres tener el correo que hiz¢ el Crash.
+
+
+refuse_self_adressing=0
+-----------------------
+Son las direcciones del mandador (Mail from) y del recibido indenticos el correo esta refusado.
+Esta entrada es para todos los direcciones electronicos!!!
+Para activarlo pone el valor a refuse_self_adressing=1
+
+
+address_file=
+-------------
+Es posible tener el Path al fichero adress. El path tiene que ser completo INCLUIDO el nombre del fichero!!!
+La ventaja es que puedes optar el nombre del fichero como deseas.
+Si no hay una inscripci¢n es buscando en el directorio del filter4.exe primero y despues en el directorio de Weasel.
+
+
+Body_file=
+----------
+Es posible tener el Path al fichero body. El path tiene que ser completo INCLUIDO el nombre del fichero!!!
+La ventaja es que puedes optar el nombre del fichero como deseas.
+Si no hay una inscripci¢n es buscando en el directorio del filter4.exe primero y despues en el directorio de Weasel.
+
+
+Subject_file=
+-------------
+Es posible tener el Path al fichero subject. El path tiene que ser completo INCLUIDO el nombre del fichero!!!
+La ventaja es que puedes optar el nombre del fichero como deseas.
+Si no hay una inscripci¢n es buscando en el directorio del filter4.exe primero y despues en el directorio de Weasel.
+
+
+fromname_file=
+--------------
+Es posible tener el Path al fichero from_name. El path tiene que ser completo INCLUIDO el nombre del fichero!!!
+La ventaja es que puedes optar el nombre del fichero como deseas.
+Si no hay una inscripci¢n es buscando en el directorio del filter4.exe primero y despues en el directorio de Weasel.
+
+log_runtime=0
+-------------
+Log_runtime=1 te dice cuanto secundos tuve para scan el Mail.
+Normalmente no es importa. Pero si busgues el mensaje todo (Body_Scan_Size=0 and Stop =0) dura de medio minuto hasta unos minutos para scan un Mail
+que tiene una grandesa de 12MB.
+
+
+log_all_recipients=0
+--------------------
+Si hay m s que un aceptador filter4.exe hace para cada una linea en el fichero log. Para activar esta opci¢n tiene que activar el loging
+y pone el valor log_all_recipients= de 0 a 1.  Esta log esta hacido antes la funcciona check_relation.
+Si la funcciona fals log_after_relations = 1 es actividada las direcciones electronocas son dos veces !!
+aktiviert ist, sind die Afressen doppelt!!
+
+
+log_after_relations=0
+---------------------
+Pone las direcciones despues de check_relations.
+
+
+max_number_of_recipients=0
+--------------------------
+Limita el numero de los aceptadores. Si no quiere deja el valor a 0.
+
+
+check_relations=0
+-----------------
+Controla, si el mandador y el aceptador tienen una relaci¢n en el fichero relation. Depede de la relac¢n, el mail
+- negara,
+- tomara, auque se trata de "Spam",
+- tomara pero filtrara como normal
+
+
+relation_file=
+--------------
+Puede escribir el camino al fichero relation. El camino tiene que ser completamento INCLUSO el nombre del fichero !!!!!
+En otro lado puede optar el nombre del dechero como prefiere.
+Si no hay un fichero relation filter4.exe busca primero en el directorio de filter4.exe y despues en el directotio de Weasel.
+
+
+remove_list_lines=0
+-------------------
+es una opci¢n experimental que no es elaborado totalmente ahora. Por eso solo lo uso en caso de emergencia.
+tacha todos los lineas de los Mailinglists en el Header de un mail.
+
+
+
+Noticias por el fichero INI
+___________________________
+
+Filter_4 escribe cada vez un fichero nuevo cuando no puede encontrarle.
+Escribe valores previstos. Por eso haz una copia. Sobre todo cuando haces un update.
+
+
+Syntax
+======
+Aunque es un "Badwordfilter" (filtro para palabras malas) el programa puede buscar de diferente maneras:
+Cada linea empieza con und valor, un numero, que pertence a la palabra mala y suma al valor total si es encontrado en el correo.
+cuando el valor total esta m s que el Trigger_Value el correo esta rechazado como spam.
+
+
+Ejemplo:
+100: *xxx
+
+Directo detras del valor tiene que ser dos puntos.
+Le da igual cuando detras de dos puntos tiene espacio o no.
+100:*xxx  es lo mismo como
+100: *  xxx
+
+Al fin de la linea no tienes que hacer caracter especial. Espacios estan ignorados.
+
+Cuando tiene un *, las palabras en los ficheros adress, subject y body cambia en leteros peque¤os y filter_4 busca.
+Ahora las palabras cambia  en leteras grandes y filter_4 busca otra vez.
+No tiene influencia para el usario pero para el progamador.
+
+house y HOUSE estan lo mismo.
+
+
+Syntax en separado
+------------------
+
+*   Busca para leteras no obstance si es escrito peque¤ o grande.
+    100: * mea  busca por mesa, pero tambien MESA, SOBREMESA, SUBMESA, baliarenlaMESA
+
+U   busca para leteras grandes.
+    100: U mesa busca por MESA, sobreMESA pero no mesa
+
+b   busca para un palabre que empieza con estas leteras
+    100: b mesa busca por mesa, mesas pero no buenmesa y tanpoco MESA
+
+B   busca para un palabra que empieza con estas leteras y esta en leteras grandes
+    100: B MESA ecuentra MESA MESAbuena, pero no mesilla o mesa
+
+=   busca exactemente para esta cola de leteras
+    100: = TaBlE solo encuentra TaBlE
+
+w   Tiene que ser un palabra
+    100: w mesa encuentra mesa y MESA y nada m s
+
+W   Tiene que ser un palabra en leteras grandes
+    100: W tisch encuentra solamente MESA
+
+!   Busca para un Domain
+    100: ! spam.com busca por un Domain de muestra "....spam.com". Ignora Subdomains!!
+    box.spam.com y server.spam.com tambien son positivos
+    Se puede escribir tambien solo Topleveldomains
+    100: ! .cc busca para todos los CC Domains
+
+@   Busca por una direcci¢n de correo electronico empiezando del Topleveldomain.
+    100: @ spam.com busca por   ....@....spam.org. Ignora subdomains!
+
+
+
+
+Syntax en el fichero adress
+---------------------------
+A primero tiene que ser un numero, dirctamente detras un puntodoble. despues un caracter (! @ o otra letera)
+despues una direcci¢n de correo electronico, un Domain y quando quiere una  Opci¢n /NL /KEY o /WKEY
+
+
+Por que -1 es un indicador de un error NO UTILIZE  -1 !
+
+.......
+-200: @os2force.ch              @  Pone todos mandadores de esta Domain a -200
+                                MIRA: hace differencias por Subdomains !!
+
+-200: !os2force.ch              ! Pone todos mandadores incluso sus Subdomains a -200
+
+-10000:*fritz@os2force.ch       pone fritz@os2force.ch a -10000  Podr¡a usa en lugar de * un otro letera.
+                                Pero cuando pinensa a otros updates es mejor cuando unsa *.
+
+
+-1000:*no_loop@domain.ch /NL    La Opci¢n /NL prohibida para esta mandador que se no puede mandar correos a su mismo.
+                                Es nesecitado por una mailinglist.
+
+
+-1000:*loop@domain.ch /KEY:"Key Phrase"
+                                La opci¢n /KEY: hace que en los primeros 512 letras del body la software busca por el Keypalabra o el Key frase.
+                                Si el key-palabra o el Key -frase esta encontrado el valor inicial es pone a -1000 y el mandador puede enviar
+                                correos a su mismo.
+                                De momento un salto de linea destruia el key, si es un UTF-8 salto de linea.
+
+0:*No_filtraci¢n@domain.com /WKEY:"Key Prase"
+
+                                /WKEY significa puede hacer loop y el correo no esta filtrado, si el key esta encontrado.
+                                Todavia el salto de linea puede destriur que el Key esta encontrado en los primeros 512 letras.
+                                De momento un salto de linea destruia el key, si es un UTF-8 salto de linea.
+
+
+Solo una direcci¢n de Email por linea.
+Pone valores negativos para amogos y positivos para spammers conocidos.
+
+
+
+El fichero Subject y fichero body:
+==================================
+.........
+
+
+50:W   BBC              Busca la palabra  BBC en leteras grandes
+100:   U    BIG!        Busca la palabra la palabra BIG! tambien el "!" esta buscado.
+100:! cc                Busca para un Domain que queda http://......cc
+100:U hour              Busca para las leteras grandes HUOR
+100:b sex               Busca para todo que empieza con sex
+100:B Gratis            Busca para un una palabra que empieca con leteras grandes. GRATIS es un golpe. Pero Gratis no es!
+50:@ mail.com           Busca para un direccion dem Email que termina por mail.com
+20:=Gratis              Busca solamente para Gratis. Pero no para GRAITS o gratis.
+20:*watches             Busca para watches o WATCHES
+
+
+el fichero relacion
+===================
+
+Hay tres estrategias y tres marcadores
+
+NO:
+---
+todos los correos son desestimado, excepto los con un + o un *
+
+ALL:
+----
+Todos los correos son adoptado, exepto los con un - o  un *
+
+
+Si  no hay ni NO ni ALL:
+------------------------
+Todos los correos son filtrado excepto, los con un - (que son refused) o los con un + (que no seran filtrado)
+
+
+marcadores:
+-----------
+
+-fritz@os2force.ch significa: este correo simepre es detestimado.
++fritz@os2force.ch significa: este correo siempre esta adoptado sin filtrar.
+*fritz@os2force.ch significa: este correo esta adoptado, si no sea spam tras filtrado.
+
+
+
+Das File beginnt mit einer Systemzeile, die momentan noch nicht genutzt wird, aber im Bezug auf sp„tere Versionen schon beinhaltet ist.
+
+[$sys]                               <- Markiert den Beginn der Systemvariabeln
+ Adminkonop=Admin@irgendetwas        <- sp„tere Verwendung
+ domains=4
+some internal stuff                  <- sp„tere Verwendung
+[/sys]                               <- Ende der Systemvariabeln
+
+
+[OS2Force.ch]                        <- Beginn der Doamin, dient nur der šbersicht
+
+[daniela@os2force.ch NO]             <- Beginn des Users "daniela"  NO Steht fr die Strathegie: Alle Email soll abgeweisen werden, ausser von
++sender1@xy.xx                       <- Dieser Absender wird immer angenommen
++professor@university.com            <- Dieser Absender wird immer angenommen
+*Some.other.user@no.idea.com         <- Dieser Sender gefiltert
+[/daniela]                           <- Ende der Eintr„ge von Daniela. Der Ende eintrag MUSS vorhanden sein!
+
+[doris@os2force.ch ALL]              <- neuer User. Grunds„tzlich werden ALLe Emails angenommen, ausser
+-ruth@xy.xx                          <- Wird immer abgewiesen!
+*sender1@xy.xx                       <- Wird angenommen und gefiltert
++New_boyfriend@zz.xx                 <- wird immer ohne filterung angenommen
+-Ex_lover@another.domain.com         <- Wird immer abgewiesen!
+-staker@somewere.com                 <- Wird immer abgewiesen!
+[/doris]
+
+[Pablo@os2force.ch]                  <- Alle Emails werden gefiltert, wie normal eben, ausser
+-Ex-Girlfriend@zz.xx                 <- Wird immer abgewiesen
+*peter@urugu.oo                      <- Wird angenommen und gefiltert
+*sender1@xy.xx                       <- Wird angenommen und gefiltert
+[/Pablo]
+
+[/Os2force.ch]
+
+Comentarios
+===========
+
+Porque he escrtio este programa por mi mismo, le tenga unas bugs.
+Aunque el trabaja por aqui perfectamente el puede hacer problemas en t£ lugar.
+Usa al comenzio a un red separado o mira al menos a menudo por el systema tuia.
+Mira para entradas nuevas en el fichero POPUPLOG.OS2
+Cuando el programa se cola no le cola la toda systema. Por menos por aqui. cuando le hace en tu lugar escribeme un mail
+y haz una noticia en el Weasel maling list.
+quizas unas programas son mejor para problemas tujos o otras programas son m s adequado para para tu spam.
+Pero funciona con Weasel y quizas podrias usar el programa solo por una funcciona que otras no tienen.
